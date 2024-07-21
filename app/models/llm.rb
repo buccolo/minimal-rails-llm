@@ -3,7 +3,11 @@ class LLM
     response = client.chat(
       parameters: {
         model: 'gpt-4o-mini',
-        messages: [{ role: 'user', content: message }],
+        messages: [
+          # TODO: Add system pre-prompt
+          # TODO: Add previous messages in thread here
+          { role: 'user', content: message }
+        ],
         temperature: 0.7
       }
     )

@@ -1,27 +1,9 @@
+# Minimal Rails LLM Example
 
-asdf install
+## Milestones
 
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [x] Send a message to ChatGPT and get a response.
+- [ ] Structure the Chat / Messages models.
+- [ ] Stream responses for a LLM-like experience.
+- [ ] RAG
+- [ ] Agents / Tools
