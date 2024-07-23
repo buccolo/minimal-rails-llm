@@ -11,11 +11,12 @@
   </div>
 
   <div id="chats" class="min-w-full">
-    <% @chats.each do |chat| %>
-      <%= render chat %>
-      <p>
-        <%= link_to "Show this chat", chat, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+    <ul class="ml-5">
+      <% @chats.each do |chat| %>
+        <li class="list-disc my-4">
+          <%= link_to chat.title, chat, class: "font-medium underline" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

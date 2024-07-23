@@ -8,7 +8,7 @@ class ChatsController < ApplicationController
 
   # GET /chats/1
   def show
-    @message = @chat.messages.new
+    @message = Message.new(chat_id: params[:chat_id])
   end
 
   # GET /chats/new

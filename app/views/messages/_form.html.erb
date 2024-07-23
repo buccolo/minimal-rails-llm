@@ -1,10 +1,17 @@
-<%= form_for(:message, url: chat_messages_path(chat), class: "contents") do |form| %>
-  <div class="my-5">
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+<div class="mt-6 flex gap-x-3">
+  <span class="relative h-6 w-6 flex-none rounded-full bg-gray-50 text-center text-xl"><%= @message.role_emoji %></span>
+  <%= form_for(:message, url: chat_messages_path(chat), class: "relative flex-auto") do |form| %>
+    <div class="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+      <%= form.label :content, class: "sr-only" %>
+      <%= form.text_area :content, rows: 4, class: "block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
+    </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+    <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
+      <div class="flex items-center space-x-5">
+        <div class="flex items-center">
+        </div>
+      </div>
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", value: "Send" %>
+    </div>
+  <% end %>
+</div>

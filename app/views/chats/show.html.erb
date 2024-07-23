@@ -5,8 +5,6 @@
     <% end %>
 
     <%= render @chat %>
-    <%= render partial: "messages/message", collection: @chat.messages %>
-    <%= render "messages/form", chat: @chat, message: @message %>
 
     <%= link_to "Edit this chat", edit_chat_path(@chat), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
