@@ -4,7 +4,8 @@
 
 - [x] Send a message to ChatGPT and get a response.
 - [x] Structure the Chat / Messages models.
-- [ ] Simple tailwindcss superstylin'.
+- [x] Simple superstylin'.
+- [x] Always send the entire conversation.
 - [ ] Stream responses for a LLM-like experience.
 - [ ] Add markdown
 - [ ] RAG

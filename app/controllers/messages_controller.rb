@@ -2,8 +2,8 @@ class MessagesController < ApplicationController
   before_action :set_chat
 
   def create
-    @message = @chat.messages.create!(message_params)
-    llm_message = LLM.new.chat(@message.content)
+    @chat.messages.create!(message_params)
+    llm_message = LLM.new(chat: @chat).call!
     @chat.messages.create!(role: :assistant, content: llm_message)
 
     redirect_to @chat
