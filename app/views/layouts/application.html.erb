@@ -16,7 +16,7 @@
       <% flash.each do |key, message| %>
         <div class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
           <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
-            <p class="py-2 px-3 mb-5 ring-1 <%= key == "success" ? "bg-green-50 text-green-500 ring-green-400" : "bg-red-50 text-red-500 ring-red-400" %> font-medium rounded-lg inline-block"><%= message %></p>
+            <p class="py-2 px-3 mb-5 ring-1 <%= key == "notice" ? "bg-green-50 text-green-500 ring-green-400" : "bg-red-50 text-red-500 ring-red-400" %> font-medium rounded-lg inline-block"><%= message %></p>
           </div>
         </div>
       <% end %>
