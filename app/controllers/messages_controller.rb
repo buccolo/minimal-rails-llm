@@ -3,13 +3,13 @@ class MessagesController < ApplicationController
 
   def create
     @chat.messages.create!(message_params)
-    StreamResponsesJob.perform_later(@chat)
-    redirect_to @chat # TODO(bruno): use turbostream instead of redirect
+    assistant_message = @chat.messages.create(role: :assistant, content: '...')
+    StreamResponsesJob.perform_later(@chat, assistant_message)
+    render turbo_stream: turbo_stream.replace(@chat, partial: 'chats/chat', locals: { chat: @chat })
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
   def message_params
     params.require(:message).permit(:content)
   end

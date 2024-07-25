@@ -23,13 +23,13 @@ class LLM
     response.dig('choices', 0, 'message', 'content')
   end
 
-  def call_async!(stream)
+  def call_async!(stream_proc)
     client.chat(
       parameters: {
         model: 'gpt-4o-mini',
         messages: [pre_prompt, *messages],
         temperature: TEMPERATURE,
-        stream: # response will be streamed to this proc
+        stream: stream_proc
       }
     )
   end

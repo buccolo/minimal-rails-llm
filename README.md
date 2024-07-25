@@ -1,4 +1,3 @@
-redis-server --daemonize yes
 # Minimal Rails LLM Example
 
 ## Milestones
@@ -7,7 +6,6 @@ redis-server --daemonize yes
 - [x] Structure the Chat / Messages models.
 - [x] Simple superstylin'.
 - [x] Always send the entire conversation.
-- [ ] Stream responses for a LLM-like experience.
-- [ ] Add markdown
+- [x] Stream responses for a LLM-like experience.
 - [ ] RAG
 - [ ] Agents / Tools
