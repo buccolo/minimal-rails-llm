@@ -17,6 +17,6 @@
     <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500"><span class="font-medium text-gray-900">User</span> created this chat.</p>
     <span class="flex-none py-0.5 text-xs leading-5 text-gray-500"><%= time_ago_in_words(chat.created_at) %></span>
   </li>
-  <%= render partial: "messages/message", collection: @chat.messages %>
+  <%= render partial: "messages/message", collection: @chat.messages.order(:created_at) %>
   <%= render "messages/form", chat: @chat, message: @message %>
 </ul>

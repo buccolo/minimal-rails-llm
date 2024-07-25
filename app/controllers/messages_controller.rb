@@ -3,10 +3,8 @@ class MessagesController < ApplicationController
 
   def create
     @chat.messages.create!(message_params)
-    llm_message = LLM.new(chat: @chat).call!
-    @chat.messages.create!(role: :assistant, content: llm_message)
-
-    redirect_to @chat
+    StreamResponsesJob.perform_later(@chat)
+    redirect_to @chat # TODO(bruno): use turbostream instead of redirect
   end
 
   private

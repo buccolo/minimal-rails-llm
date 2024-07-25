@@ -1,3 +1,4 @@
+redis-server --daemonize yes
 # Minimal Rails LLM Example
 
 ## Milestones
