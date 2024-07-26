@@ -1,0 +1,16 @@
+<div id="<%= dom_id document %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= document.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">File:</strong>
+    <% if document.file.attached? %>
+      <%= link_to document.file.filename, url_for(document.file), class: "font-medium underline" %>
+    <% else %>
+      Nothing attached.
+    <% end %>
+  </p>
+
+</div>
