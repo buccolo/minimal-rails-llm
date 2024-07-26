@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_26_014804) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_26_023106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -56,6 +56,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_26_014804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "embeddings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "document_id", null: false
+    t.text "context"
+    t.vector "embedding", limit: 1536
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_embeddings_on_document_id"
+  end
+
   create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "chat_id", null: false
     t.integer "role"
@@ -67,5 +76,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_26_014804) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "embeddings", "documents"
   add_foreign_key "messages", "chats"
 end
