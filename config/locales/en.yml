@@ -28,4 +28,7 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  embeddings:
+    zero: 'no embeddings'
+    one: 'one embedding'
+    other: '%{count} embeddings'
