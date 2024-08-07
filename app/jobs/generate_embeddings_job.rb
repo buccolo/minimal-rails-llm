@@ -1,5 +1,7 @@
-# https://platform.openai.com/docs/guides/embeddings/embedding-models
-class GenerateEmbeddings
+# See more: https://platform.openai.com/docs/guides/embeddings/embedding-models
+class GenerateEmbeddingsJob < ApplicationJob
+  queue_as :default
+
   # The maximum amount of tokens for each embedding is 8191.
   # One token represents about 3/4 of a word, so we have a maximum of ~6100 words.
   # We'll use 1000 words so we can see more embedding being created.
@@ -7,26 +9,18 @@ class GenerateEmbeddings
   # See https://github.com/IAPark/tiktoken_ruby for more precise token counting.
   EMBEDDING_SIZE_IN_WORDS = 1000
 
-  attr_reader :document
-
-  def initialize(document)
-    @document = document
-  end
-
-  def call!
+  def perform(document)
     # Great advice on how to slice and create chunks over here:
     # https://www.timescale.com/blog/postgresql-as-a-vector-database-create-store-and-query-openai-embeddings-with-pgvector/
     #
     # For the sake of this exercise, we're following a very naive approach:
-    content.split.each_slice(EMBEDDING_SIZE_IN_WORDS) do |words|
+    content_of(document).split.each_slice(EMBEDDING_SIZE_IN_WORDS) do |words|
       embedding_content = words.join(' ')
 
-      response = client.embeddings(
-        parameters: {
-          model: 'text-embedding-3-small',
-          input: embedding_content
-        }
-      )
+      response = client.embeddings(parameters: {
+                                     model: 'text-embedding-3-small',
+                                     input: embedding_content
+                                   })
 
       embedding = response.dig('data', 0, 'embedding')
       document.embeddings.create!(context: embedding_content, embedding:)
@@ -35,8 +29,8 @@ class GenerateEmbeddings
 
   private
 
-  def content
-    @content ||= document.file.blob.download
+  def content_of(document)
+    document.file.blob.download
   end
 
   def client

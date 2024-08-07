@@ -22,6 +22,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
 
     if @document.save
+      GenerateEmbeddingsJob.perform_later(@document)
       redirect_to @document, notice: 'Document was successfully created.'
     else
       render :new, status: :unprocessable_entity
